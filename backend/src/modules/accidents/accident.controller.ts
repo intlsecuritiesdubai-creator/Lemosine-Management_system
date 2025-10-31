@@ -13,4 +13,9 @@ export class AccidentController {
     const accident = await service.createAccident(req.body);
     res.status(201).json({ success: true, data: accident });
   }
+
+  static async get(req: Request, res: Response) {
+    const accident = await service.getAccident(req.params.id);
+    res.json({ success: true, data: accident });
+  }
 }

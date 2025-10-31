@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../shared/base.entity';
-import { ExpenseCategory } from '../shared/enums';
+import { ExpenseCategory, ExpenseStatus } from '../shared/enums';
 import { Vehicle } from '../fleet/vehicle.entity';
 import { Driver } from '../drivers/driver.entity';
 
@@ -18,8 +18,20 @@ export class Expense extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   description?: string;
 
-  @Column({ default: 'PENDING' })
-  status!: string;
+  @Column({ type: 'enum', enum: ExpenseStatus, default: ExpenseStatus.PENDING })
+  status!: ExpenseStatus;
+
+  @Column({ nullable: true })
+  receiptUrl?: string;
+
+  @Column({ nullable: true })
+  approvedBy?: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  approvedAt?: Date;
+
+  @Column({ nullable: true })
+  notes?: string;
 
   @ManyToOne(() => Vehicle, { eager: true, nullable: true })
   @JoinColumn({ name: 'vehicle_id' })

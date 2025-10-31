@@ -3,6 +3,8 @@ import { BaseEntity } from '../shared/base.entity';
 import { VehicleStatus } from '../shared/enums';
 import { Maintenance } from './maintenance.entity';
 import { Trip } from './trip.entity';
+import { VehicleAssignment } from './assignment.entity';
+import { Document } from '../shared/document.entity';
 
 @Entity('vehicles')
 export class Vehicle extends BaseEntity {
@@ -41,4 +43,10 @@ export class Vehicle extends BaseEntity {
 
   @OneToMany(() => Trip, (trip) => trip.vehicle)
   trips!: Trip[];
+
+  @OneToMany(() => VehicleAssignment, (assignment) => assignment.vehicle)
+  assignments!: VehicleAssignment[];
+
+  @OneToMany(() => Document, (document) => document.vehicle)
+  documents!: Document[];
 }

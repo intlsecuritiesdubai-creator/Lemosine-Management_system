@@ -10,10 +10,14 @@ export class AccidentRepository {
   }
 
   list() {
-    return this.repo.find();
+    return this.repo.find({ order: { occurredOn: 'DESC' } });
   }
 
   create(data: Partial<Accident>) {
     return this.repo.save(this.repo.create(data));
+  }
+
+  get(id: string) {
+    return this.repo.findOneBy({ id });
   }
 }

@@ -18,6 +18,12 @@ export class Income extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   description?: string;
 
+  @Column({ nullable: true })
+  reference?: string;
+
+  @Column({ nullable: true })
+  invoiceUrl?: string;
+
   @ManyToOne(() => Vehicle, { eager: true, nullable: true })
   @JoinColumn({ name: 'vehicle_id' })
   vehicle?: Vehicle;

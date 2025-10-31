@@ -4,6 +4,10 @@ import { User } from '../users/user.entity';
 import { Vehicle } from '../fleet/vehicle.entity';
 import { Trip } from '../fleet/trip.entity';
 import { Accident } from '../accidents/accident.entity';
+import { AttendanceRecord } from './attendance.entity';
+import { LeaveRequest } from './leave.entity';
+import { PerformanceReview } from './performance.entity';
+import { Document } from '../shared/document.entity';
 
 @Entity('drivers')
 export class Driver extends BaseEntity {
@@ -41,4 +45,16 @@ export class Driver extends BaseEntity {
 
   @OneToMany(() => Accident, (accident) => accident.driver)
   accidents!: Accident[];
+
+  @OneToMany(() => AttendanceRecord, (attendance) => attendance.driver)
+  attendanceRecords!: AttendanceRecord[];
+
+  @OneToMany(() => LeaveRequest, (leave) => leave.driver)
+  leaves!: LeaveRequest[];
+
+  @OneToMany(() => PerformanceReview, (review) => review.driver)
+  performanceReviews!: PerformanceReview[];
+
+  @OneToMany(() => Document, (document) => document.driver)
+  documents!: Document[];
 }

@@ -38,4 +38,29 @@ export class FleetController {
     const trip = await vehicleService.addTrip(req.params.id, req.body);
     res.status(201).json({ success: true, data: trip });
   }
+
+  static async addDocument(req: Request, res: Response) {
+    const document = await vehicleService.addDocument(req.params.id, req.body);
+    res.status(201).json({ success: true, data: document });
+  }
+
+  static async listDocuments(req: Request, res: Response) {
+    const documents = await vehicleService.listDocuments(req.params.id);
+    res.json({ success: true, data: documents });
+  }
+
+  static async assignDriver(req: Request, res: Response) {
+    const assignment = await vehicleService.assignDriver(req.params.id, req.body);
+    res.status(201).json({ success: true, data: assignment });
+  }
+
+  static async listAssignments(req: Request, res: Response) {
+    const assignments = await vehicleService.listAssignments(req.params.id);
+    res.json({ success: true, data: assignments });
+  }
+
+  static async releaseDriver(req: Request, res: Response) {
+    const assignments = await vehicleService.releaseDriver(req.params.id);
+    res.json({ success: true, data: assignments });
+  }
 }

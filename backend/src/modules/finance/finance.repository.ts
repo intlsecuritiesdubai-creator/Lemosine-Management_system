@@ -13,11 +13,11 @@ export class FinanceRepository {
   }
 
   listExpenses() {
-    return this.expenses.find();
+    return this.expenses.find({ order: { incurredOn: 'DESC' } });
   }
 
   listIncome() {
-    return this.income.find();
+    return this.income.find({ order: { receivedOn: 'DESC' } });
   }
 
   createExpense(data: Partial<Expense>) {
@@ -26,5 +26,31 @@ export class FinanceRepository {
 
   createIncome(data: Partial<Income>) {
     return this.income.save(this.income.create(data));
+  }
+
+  getExpense(id: string) {
+    return this.expenses.findOneBy({ id });
+  }
+
+  saveExpense(expense: Expense) {
+    return this.expenses.save(expense);
+  }
+
+  async totalsByCategory() {
+    return this.expenses
+      .createQueryBuilder('expense')
+      .select('expense.category', 'category')
+      .addSelect('COALESCE(SUM(expense.amount), 0)', 'total')
+      .groupBy('expense.category')
+      .getRawMany();
+  }
+
+  async incomeBySource() {
+    return this.income
+      .createQueryBuilder('income')
+      .select('income.source', 'source')
+      .addSelect('COALESCE(SUM(income.amount), 0)', 'total')
+      .groupBy('income.source')
+      .getRawMany();
   }
 }

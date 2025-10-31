@@ -3,24 +3,30 @@ import { AppDataSource } from '../../database/data-source';
 import { Vehicle } from './vehicle.entity';
 import { Maintenance } from './maintenance.entity';
 import { Trip } from './trip.entity';
+import { Document } from '../shared/document.entity';
+import { VehicleAssignment } from './assignment.entity';
 
 export class VehicleRepository {
   private readonly repo: Repository<Vehicle>;
   private readonly maintenanceRepo: Repository<Maintenance>;
   private readonly tripRepo: Repository<Trip>;
+  private readonly documentRepo: Repository<Document>;
+  private readonly assignmentRepo: Repository<VehicleAssignment>;
 
   constructor() {
     this.repo = AppDataSource.getRepository(Vehicle);
     this.maintenanceRepo = AppDataSource.getRepository(Maintenance);
     this.tripRepo = AppDataSource.getRepository(Trip);
+    this.documentRepo = AppDataSource.getRepository(Document);
+    this.assignmentRepo = AppDataSource.getRepository(VehicleAssignment);
   }
 
   findAll() {
-    return this.repo.find({ relations: ['maintenanceRecords', 'trips'] });
+    return this.repo.find({ relations: ['maintenanceRecords', 'trips', 'documents', 'assignments'] });
   }
 
   findById(id: string) {
-    return this.repo.findOne({ where: { id }, relations: ['maintenanceRecords', 'trips'] });
+    return this.repo.findOne({ where: { id }, relations: ['maintenanceRecords', 'trips', 'documents', 'assignments'] });
   }
 
   async getVehicle(id: string) {
@@ -53,5 +59,32 @@ export class VehicleRepository {
 
   async addTrip(entry: Trip) {
     return this.tripRepo.save(entry);
+  }
+
+  addDocument(document: Partial<Document>) {
+    const entity = this.documentRepo.create(document);
+    return this.documentRepo.save(entity);
+  }
+
+  listDocuments(vehicleId: string) {
+    return this.documentRepo.find({ where: { vehicle: { id: vehicleId } }, order: { createdAt: 'DESC' } });
+  }
+
+  createAssignment(data: Partial<VehicleAssignment>) {
+    const entity = this.assignmentRepo.create(data);
+    return this.assignmentRepo.save(entity);
+  }
+
+  async closeAssignmentsForVehicle(vehicleId: string) {
+    const openAssignments = await this.assignmentRepo.find({ where: { vehicle: { id: vehicleId }, releasedAt: null } });
+    for (const assignment of openAssignments) {
+      assignment.releasedAt = new Date();
+      await this.assignmentRepo.save(assignment);
+    }
+    return openAssignments;
+  }
+
+  listAssignments(vehicleId: string) {
+    return this.assignmentRepo.find({ where: { vehicle: { id: vehicleId } }, order: { assignedAt: 'DESC' } });
   }
 }

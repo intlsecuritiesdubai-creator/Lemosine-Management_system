@@ -10,6 +10,13 @@ import { Salary } from '../modules/hr/salary.entity';
 import { Accident } from '../modules/accidents/accident.entity';
 import { Trip } from '../modules/fleet/trip.entity';
 import { Maintenance } from '../modules/fleet/maintenance.entity';
+import { VehicleAssignment } from '../modules/fleet/assignment.entity';
+import { Document } from '../modules/shared/document.entity';
+import { Notification } from '../modules/shared/notification.entity';
+import { AttendanceRecord } from '../modules/drivers/attendance.entity';
+import { LeaveRequest } from '../modules/drivers/leave.entity';
+import { PerformanceReview } from '../modules/drivers/performance.entity';
+import { AuditLog } from '../modules/shared/audit-log.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -20,6 +27,24 @@ export const AppDataSource = new DataSource({
   database: env.db.database,
   synchronize: false,
   logging: false,
-  entities: [User, Role, Vehicle, Driver, Expense, Income, Salary, Accident, Trip, Maintenance],
+  entities: [
+    User,
+    Role,
+    Vehicle,
+    Driver,
+    Expense,
+    Income,
+    Salary,
+    Accident,
+    Trip,
+    Maintenance,
+    VehicleAssignment,
+    Document,
+    Notification,
+    AttendanceRecord,
+    LeaveRequest,
+    PerformanceReview,
+    AuditLog
+  ],
   migrations: ['dist/migrations/*.js']
 });

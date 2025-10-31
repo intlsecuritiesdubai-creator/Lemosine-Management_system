@@ -8,7 +8,9 @@ const router = Router();
 router.use(authenticate);
 router.get('/expenses', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER, UserRole.FLEET_MANAGER]), FinanceController.listExpenses);
 router.post('/expenses', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER]), FinanceController.createExpense);
+router.patch('/expenses/:id/approval', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER]), FinanceController.approveExpense);
 router.get('/income', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER]), FinanceController.listIncome);
 router.post('/income', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER]), FinanceController.createIncome);
+router.get('/analytics/breakdown', authorize([UserRole.SUPER_ADMIN, UserRole.FINANCE_OFFICER, UserRole.CLIENT_MANAGER, UserRole.VIEWER]), FinanceController.financialBreakdown);
 
 export default router;

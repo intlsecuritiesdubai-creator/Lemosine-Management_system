@@ -20,6 +20,15 @@ export class Accident extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   notes?: string;
 
+  @Column({ type: 'jsonb', nullable: true })
+  attachments?: Array<{ url: string; label?: string }>;
+
+  @Column({ type: 'numeric', precision: 12, scale: 2, default: 0 })
+  insuranceClaim?: number;
+
+  @Column({ type: 'numeric', precision: 12, scale: 2, default: 0 })
+  deductedFromSalary?: number;
+
   @ManyToOne(() => Vehicle, { eager: true })
   @JoinColumn({ name: 'vehicle_id' })
   vehicle!: Vehicle;

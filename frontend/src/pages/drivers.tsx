@@ -21,6 +21,16 @@ export const DriversPage = () => {
             render: (value) => new Date(String(value)).toLocaleDateString()
           },
           {
+            key: 'baseSalary',
+            label: 'Base Salary',
+            render: (value) => `AED ${Number(value ?? 0).toLocaleString()}`
+          },
+          {
+            key: 'overtimeRate',
+            label: 'Overtime Rate',
+            render: (value) => `AED ${Number(value ?? 0).toLocaleString()}`
+          },
+          {
             key: 'assignedVehicle',
             label: 'Assigned Vehicle',
             render: (value) => (value ? (value as Driver['assignedVehicle'])?.plateNumber : 'Unassigned')

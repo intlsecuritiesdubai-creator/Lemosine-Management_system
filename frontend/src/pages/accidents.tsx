@@ -15,7 +15,9 @@ export const AccidentsPage = () => {
         columns={[
           { key: 'occurredOn', label: 'Date', render: (value) => new Date(String(value)).toLocaleDateString() },
           { key: 'description', label: 'Description' },
-          { key: 'damageCost', label: 'Damage Cost', render: (value) => `AED ${Number(value).toLocaleString()}` }
+          { key: 'damageCost', label: 'Damage Cost', render: (value) => `AED ${Number(value).toLocaleString()}` },
+          { key: 'insuranceClaim', label: 'Insurance Claim', render: (value) => `AED ${Number(value).toLocaleString()}` },
+          { key: 'deductedFromSalary', label: 'Salary Deduction', render: (value) => `AED ${Number(value).toLocaleString()}` }
         ]}
         data={data?.data}
       />

@@ -23,4 +23,14 @@ export class FinanceController {
     const income = await service.createIncome(req.body);
     res.status(201).json({ success: true, data: income });
   }
+
+  static async approveExpense(req: Request, res: Response) {
+    const expense = await service.approveExpense(req.params.id, req.body);
+    res.json({ success: true, data: expense });
+  }
+
+  static async financialBreakdown(_req: Request, res: Response) {
+    const breakdown = await service.getFinancialBreakdown();
+    res.json({ success: true, data: breakdown });
+  }
 }

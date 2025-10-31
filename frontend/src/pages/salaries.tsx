@@ -15,8 +15,15 @@ export const SalariesPage = () => {
         columns={[
           { key: 'periodStart', label: 'From', render: (value) => new Date(String(value)).toLocaleDateString() },
           { key: 'periodEnd', label: 'To', render: (value) => new Date(String(value)).toLocaleDateString() },
+          { key: 'allowances', label: 'Allowances', render: (value) => `AED ${Number(value).toLocaleString()}` },
+          { key: 'overtimePay', label: 'Overtime Pay', render: (value) => `AED ${Number(value).toLocaleString()}` },
           { key: 'netAmount', label: 'Net Amount', render: (value) => `AED ${Number(value).toLocaleString()}` },
-          { key: 'status', label: 'Status' }
+          { key: 'status', label: 'Status' },
+          {
+            key: 'paymentDate',
+            label: 'Paid On',
+            render: (value) => (value ? new Date(String(value)).toLocaleDateString() : 'Pending')
+          }
         ]}
         data={data?.data}
       />

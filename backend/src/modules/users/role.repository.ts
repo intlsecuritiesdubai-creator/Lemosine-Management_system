@@ -38,6 +38,13 @@ const DEFAULT_PERMISSIONS: Record<UserRole, Record<string, boolean>> = {
     manageFinance: false,
     manageHR: false,
     viewReports: true
+  },
+  [UserRole.VIEWER]: {
+    manageUsers: false,
+    manageFleet: false,
+    manageFinance: false,
+    manageHR: false,
+    viewReports: true
   }
 };
 

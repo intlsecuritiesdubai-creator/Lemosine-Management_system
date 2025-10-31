@@ -3,7 +3,8 @@ export enum UserRole {
   FLEET_MANAGER = 'FLEET_MANAGER',
   FINANCE_OFFICER = 'FINANCE_OFFICER',
   DRIVER = 'DRIVER',
-  CLIENT_MANAGER = 'CLIENT_MANAGER'
+  CLIENT_MANAGER = 'CLIENT_MANAGER',
+  VIEWER = 'VIEWER'
 }
 
 export enum VehicleStatus {
@@ -26,4 +27,57 @@ export enum IncomeSource {
   POS = 'POS',
   CORPORATE = 'CORPORATE',
   CONTRACT = 'CONTRACT'
+}
+
+export enum ExpenseStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  PAID = 'PAID'
+}
+
+export enum SalaryStatus {
+  DRAFT = 'DRAFT',
+  PENDING = 'PENDING',
+  PAID = 'PAID',
+  ON_HOLD = 'ON_HOLD'
+}
+
+export enum AttendanceStatus {
+  PRESENT = 'PRESENT',
+  ABSENT = 'ABSENT',
+  LEAVE = 'LEAVE',
+  OFF = 'OFF'
+}
+
+export enum LeaveType {
+  ANNUAL = 'ANNUAL',
+  SICK = 'SICK',
+  EMERGENCY = 'EMERGENCY',
+  UNPAID = 'UNPAID'
+}
+
+export enum LeaveStatus {
+  REQUESTED = 'REQUESTED',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  CANCELLED = 'CANCELLED'
+}
+
+export enum DocumentType {
+  INSURANCE = 'INSURANCE',
+  REGISTRATION = 'REGISTRATION',
+  PERMIT = 'PERMIT',
+  MAINTENANCE = 'MAINTENANCE',
+  LICENSE = 'LICENSE',
+  CONTRACT = 'CONTRACT',
+  OTHER = 'OTHER'
+}
+
+export enum NotificationType {
+  INSURANCE_EXPIRY = 'INSURANCE_EXPIRY',
+  LICENSE_EXPIRY = 'LICENSE_EXPIRY',
+  MAINTENANCE_DUE = 'MAINTENANCE_DUE',
+  PAYMENT_PENDING = 'PAYMENT_PENDING',
+  INCIDENT = 'INCIDENT'
 }

@@ -4,13 +4,13 @@ A full-stack enterprise platform for limousine businesses to manage vehicles, dr
 
 ## Features
 
-- **Role-based access control** with JWT authentication for Super Admin, Fleet Manager, Finance Officer, Driver, and Client Manager roles.
-- **Fleet operations** covering vehicle lifecycle, maintenance, fuel tracking, trips, and accident logging.
-- **Driver management** including licensing, visa, assignment history, salary and performance data.
-- **Finance & HR** modules to capture expenses, income streams, salary slips, deductions, and approvals.
-- **Accident management** with insurance coordination, salary deductions, and reporting.
-- **Analytics & dashboards** providing KPIs, renewal alerts, and financial summaries.
-- **Audit-ready Postgres database** with ready-to-run schema and seed bootstrap admin user.
+- **Role-based access control** with JWT authentication for Super Admin, Fleet Manager, Finance Officer, Driver, Client Manager, and Viewer roles.
+- **Fleet operations** covering vehicle lifecycle, maintenance scheduling, digital document vault, driver assignments, fuel tracking, trips, and accident logging.
+- **Driver management** including licensing, visa, attendance, leave workflows, performance reviews, document vault, assignment history, salary, and performance data.
+- **Finance & HR** modules to capture expenses with approvals, income streams, breakdown analytics, salary slips, allowances, overtime, and payroll disbursement tracking.
+- **Accident management** with insurance coordination, salary deductions, document evidence, and reporting.
+- **Alerts, notifications & analytics** providing KPIs, renewal alerts, performance insights, and financial summaries with drill-downs.
+- **Audit-ready Postgres database** with notifications, audit logs, and seed bootstrap admin user.
 - **Dockerized deployment** with separate services for API, SPA, database, and Nginx gateway.
 
 ## Tech Stack
@@ -92,7 +92,7 @@ Services:
 
 ## Database Schema
 
-The schema is defined in `backend/database/init.sql`, covering roles, users, vehicles, drivers, maintenance, trips, expenses, income, salaries, and accidents. TypeORM entities mirror this structure for runtime operations.
+The schema is defined in `backend/database/init.sql`, covering roles, users, vehicles, drivers, maintenance, trips, expenses, income, salaries, accidents, vehicle assignments, digital documents, driver attendance, leave requests, performance reviews, notifications, and audit logs. TypeORM entities mirror this structure for runtime operations.
 
 ## Testing & Quality
 
