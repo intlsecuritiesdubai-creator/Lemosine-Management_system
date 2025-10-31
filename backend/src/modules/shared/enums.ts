@@ -1,0 +1,29 @@
+export enum UserRole {
+  SUPER_ADMIN = 'SUPER_ADMIN',
+  FLEET_MANAGER = 'FLEET_MANAGER',
+  FINANCE_OFFICER = 'FINANCE_OFFICER',
+  DRIVER = 'DRIVER',
+  CLIENT_MANAGER = 'CLIENT_MANAGER'
+}
+
+export enum VehicleStatus {
+  ACTIVE = 'ACTIVE',
+  IN_MAINTENANCE = 'IN_MAINTENANCE',
+  INACTIVE = 'INACTIVE'
+}
+
+export enum ExpenseCategory {
+  FUEL = 'FUEL',
+  MAINTENANCE = 'MAINTENANCE',
+  REPAIR = 'REPAIR',
+  FINE = 'FINE',
+  PERMIT = 'PERMIT',
+  MISC = 'MISC'
+}
+
+export enum IncomeSource {
+  CASH = 'CASH',
+  POS = 'POS',
+  CORPORATE = 'CORPORATE',
+  CONTRACT = 'CONTRACT'
+}
